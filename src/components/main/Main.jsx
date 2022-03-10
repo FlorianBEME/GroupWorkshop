@@ -26,6 +26,7 @@ function Main() {
     fetchData();
   }, []);
 
+  // Ajout de user
   const submitData = (e, formData) => {
     e.preventDefault();
     if (formData.skills.length === 0) {

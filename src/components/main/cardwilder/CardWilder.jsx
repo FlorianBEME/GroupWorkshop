@@ -37,7 +37,7 @@ function CardWilder({ user, deleteUser, addVote }) {
               <div
                 onClick={() => addVote(skill, user)}
                 key={index}
-                className="border p-2 border-gray-700  rounded-2xl uppercase m-2 relative"
+                className="cursor-pointer border p-2 border-gray-700  rounded-2xl uppercase m-2 relative"
               >
                 <p className="text-gray-600 ">
                   {skill.title}
