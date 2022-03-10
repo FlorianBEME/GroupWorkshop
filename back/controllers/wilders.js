@@ -34,8 +34,6 @@ module.exports = {
   }),
   updateSkillsByIdUser: asyncHandler(async (req, res) => {
     const { id_user, id_skill } = req.params;
-    console.log(req.body);
-
     const result = await WilderModel.updateOne(
       { _id: id_user, "skills._id": id_skill },
       {
@@ -47,12 +45,7 @@ module.exports = {
     if (!result) throw createError(400, "Mauvais syntax");
     res.status(200).json({ success: true, result: result });
   }),
-  updateSkill: asyncHandler(async (req, res) => {
-    // const { id } = req.params.id;
-    // const result = await WilderModel.findOneAndUpdate({ _id: id }, req.body);
-    // if (!result) throw createError(400, "Mauvais syntax");
-    // res.status(200).json({ success: true, result: result });
-  }),
+
   delete: asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const result = await WilderModel.findOneAndDelete({ id: id });
