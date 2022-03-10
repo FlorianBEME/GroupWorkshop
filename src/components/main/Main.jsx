@@ -29,14 +29,16 @@ function Main() {
   // Ajout de user
   const submitData = (e, formData) => {
     e.preventDefault();
+    // Si pas de skill select error
     if (formData.skills.length === 0) {
       return console.log("error");
     }
-
+    // Post
     axios
       .post(`${FETCH}/wilder/create`, formData)
       .then((res) => {
         setUsers([...users, { ...res.data.result }]);
+        // Vide les inputs
         for (const [key] of Object.entries(e.target)) {
           if (e.target[key].hasOwnProperty("value")) e.target[key].value = "";
           if (e.target[key].hasOwnProperty("checked"))
@@ -52,7 +54,6 @@ function Main() {
     axios
       .delete(`${FETCH}/wilder/delete/${user._id}`)
       .then((res) => {
-        console.log(res);
         if (res.data.success) {
           const newData = users.filter((el) => el._id !== user._id);
           setUsers([...newData]);
@@ -70,12 +71,14 @@ function Main() {
       })
       .then((res) => {
         const newList = [...users];
-
+        // Récuperationd des index
         const indexUsers = newList.findIndex((el) => el._id === user._id);
         const indexSkill = newList[indexUsers].skills.findIndex(
           (el) => el._id === skill._id
         );
+        // Modification de l'éléments
         newList[indexUsers].skills[indexSkill].votes = skill.votes + 1;
+        // setstate de la nouvelle data
         setUsers([...newList]);
       })
       .catch((err) => console.error(err));
