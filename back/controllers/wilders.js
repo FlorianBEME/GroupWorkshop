@@ -54,7 +54,7 @@ module.exports = {
   }),
   getById: asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const result = WilderModel.findById({ _id: id });
+    const result = await WilderModel.findById({ _id: id });
     if (!result) throw createError(404, "");
     res.status(200).json({ success: true, result: result });
   }),
